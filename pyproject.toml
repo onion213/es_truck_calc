@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "es-truck-calc"
+version = "0.1.0"
+description = ""
+authors = ["onion <kosukekito38@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^3.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.12.1"
+isort = "^5.13.2"
+ruff = "^0.1.14"
+pytest = "^7.4.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
