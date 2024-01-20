@@ -158,3 +158,4 @@ cover/
 *.log
 local_settings.py
 db.s
+.vercel
