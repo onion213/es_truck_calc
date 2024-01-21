@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>計算機</title>
+  </head>
+  <body>
+    <div>
+      <form action="/" method="post">
+        <h1>入力値</h1>
+        <div>
+          カメラのつく板から地面の高さ(m)
+          <input
+            type="text"
+            name="cam_stand_to_ground"
+            value="{{form_value.cam_stand_to_ground}}"
+            required
+          />
+        </div>
+        <div>
+          カメラのつく板の中心から撮影領域頭の水平距離(m)
+          <input
+            type="text"
+            name="cam_stand_center_to_roi_head"
+            value="{{form_value.cam_stand_center_to_roi_head}}"
+            required
+          />
+        </div>
+        <div>
+          撮影領域頭からお尻の水平距離(m)
+          <input
+            type="text"
+            name="roi_head_to_tail"
+            value="{{form_value.roi_head_to_tail}}"
+            required
+          />
+        </div>
+        <div>
+          撮影領域尻から後ろの壁までの水平距離(m)
+          <input
+            type="text"
+            name="roi_tail_to_rear_wall"
+            value="{{form_value.roi_tail_to_rear_wall}}"
+            required
+          />
+        </div>
+        <button type="submit">計算</button>
+      </form>
+
+      <dev>
+        <h1>出力値</h1>
+        {% if result %}
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">The table header</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>カメラマウントのつく台座の中心から白線の頭までの距離</td>
+              <td>{{'%0.2f' % result.cam_stand_center_to_white_line_head}}m</td>
+            </tr>
+            <tr>
+              <td>白線の頭の幅</td>
+              <td>{{'%0.2f' % result.white_line_head_width}}m</td>
+            </tr>
+            <tr>
+              <td>白線の頭からお尻の距離</td>
+              <td>{{'%0.2f' % result.white_line_head_to_tail}}m</td>
+            </tr>
+            <tr>
+              <td>↑が壁を越える場合，壁面上での高さ</td>
+              <td>{{'%0.2f' % result.white_line_tail_to_ground}}m</td>
+            </tr>
+            <tr>
+              <td>白線のお尻の幅</td>
+              <td>{{'%0.2f' % result.white_line_tail_width}}m</td>
+            </tr>
+            <tr>
+              <td>前の白点</td>
+              <td>
+                {{'%0.2f' % result.front_center_point_to_white_line_head}}m
+              </td>
+            </tr>
+            <tr>
+              <td>後ろの白点</td>
+              <td>
+                {{'%0.2f' % result.rear_center_point_to_white_line_head}}m
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        {% else %} NONE {% endif %}
+      </dev>
+    </div>
+  </body>
+</html>
